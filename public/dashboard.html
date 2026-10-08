@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoveMentor - Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="dashboard-body">
+
+
+<div class="dashboard-container">
+    
+    <!-- LEFT PANEL -->
+    <div class="dashboard-left">
+        
+        <!-- PROFILE CARD -->
+        <div class="profile-card">
+            <h2>Welcome, <span id="userName">User</span> 👋</h2>
+            <p><strong>Email:</strong> <span id="userEmail">—</span></p>
+            <p><strong>Goal:</strong> <span id="userGoal"></span></p>
+            <p><strong>Body Type:</strong> <span id="userBodyType"></span></p>
+        </div>
+
+
+        <!-- SUMMARY CARD -->
+        <div class="summary-card">
+            <h3> Your Progress</h3>
+            <p><strong>Total Workouts:</strong> <span id="totalWorkouts">0</span></p>
+            <p><strong>Total Calories Burned:</strong> <span id="totalCalories">0</span> kcal</p>
+        </div>
+
+
+        <!-- AI SUGGESTIONS CARD -->
+        <div class="ai-card">
+            <h3>AI Suggestions</h3>
+           <div id="aiSuggestions" class="ai-suggestion-text">
+  Start your workout to get live suggestions 🧠
+</div>
+        </div>
+
+
+        <!-- LOGOUT BUTTON -->
+        <button class="btn-logout">Logout</button>
+    </div>
+
+
+    <!-- RIGHT PANEL -->
+    <div class="dashboard-right">
+        
+        <!-- TAB BUTTONS -->
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="tab-workout"> Log Workout</button>
+            <button class="tab-btn" data-tab="tab-coach">AI Coach</button>
+            <button class="tab-btn" data-tab="tab-progress"> Progress</button>
+        </div>
+
+
+        <!-- TAB 1: WORKOUT -->
+        <section id="tab-workout" class="tab-section active">
+            <div class="card">
+                <h3 class="section-title animated-divider">Workout Details</h3>
+                <p style="margin-bottom: 1.5rem; color: #cbd5e1; font-size: 0.9rem;">
+                    Log your sets, reps, and notes for today's training
+                </p>
+
+
+                <form id="workoutForm" class="workout-form">
+                     <div class="form-group">
+  <label>Exercise</label>
+  <input type="hidden" id="selectedExerciseInput">
+  <div id="exerciseSelect" class="custom-select">
+    <div class="selected">Select an exercise</div>
+    <div class="options">
+      <div data-value="pushups">Pushups</div>
+      <div data-value="squats">Squats</div>
+      <div data-value="deadlifts">Deadlifts</div>
+      <div data-value="running">Running</div>
+      <div data-value="cycling">Cycling</div>
+      <div data-value="swimming">Swimming</div>
+      <div data-value="plank">Plank</div>
+      <div data-value="jumpingjacks">Jumping Jacks</div>
+    </div>
+  </div>
+</div>
+
+
+                    <div class="form-row">
+                        <div class="form-" style="flex: 1;">
+                            <label for="setsInput">Sets</label>
+                            <input id="setsInput" type="number" min="1" max="20" required placeholder="3">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="repsInput">Reps</label>
+                            <input id="repsInput" type="number" min="1" max="100" required placeholder="10">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="notesInput">Notes (Optional)</label>
+                        <input id="notesInput" type="text" placeholder="e.g., Good form, felt strong...">
+                    </div>
+
+
+                    <div id="workoutMessage" style="margin: 0.8rem 0; text-align: center; font-weight: 600; min-height: 1.2rem;"></div>
+
+
+                    <button type="button" id="startCoachBtn" class="btn-primary start-coach-btn" style="width: 100%;">Start AI Coach</button>
+                </form>
+            </div>
+        </section>
+
+
+        <!-- TAB 2: AI COACH -->
+        <section id="tab-coach" class="tab-section">
+            <div class="coach-card">
+                <h3 id="coachExerciseTitle">AI Coach - Select Exercise</h3>
+
+
+                <div class="metrics-row">
+                    <div>
+                        <div class="metric-number" id="liveReps">0</div>
+                        <p style="color: #94a3b8; margin-top: 0.5rem;">Reps</p>
+                    </div>
+                    <div>
+                        <div class="metric-number" id="liveCalories">0</div>
+                        <p style="color: #94a3b8; margin-top: 0.5rem;">Calories</p>
+                    </div>
+                    <div>
+                        <div class="metric-number" id="formScore">100</div>
+                        <p style="color: #94a3b8; margin-top: 0.5rem;">Form Score</p>
+                    </div>
+                </div>
+
+
+                <div class="pose-wrapper">
+                    <video id="poseVideo" playsinline></video>
+                    <canvas id="poseCanvas"></canvas>
+                </div>
+
+
+                <div class="coach-controls">
+                    <div class="coach-controls-buttons">
+                        <button id="startPoseBtn" class="btn-start"> Start</button>
+                        <button id="stopPoseBtn" class="btn-stop" disabled> Stop</button>
+                    </div>
+                    <div id="poseStatus" style="font-size: 0.9rem; color: #94a3b8; margin-top: 0.5rem;">
+                        Ready to start. Select exercise and click Start!
+                    </div>
+                </div>
+
+
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(148, 163, 184, 0.2);">
+                    <p style="color: #cbd5e1; margin-bottom: 1rem; font-size: 0.9rem;">
+                        Selected Exercise: <strong id="selectedExerciseDisplay">None</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- TAB 3: PROGRESS -->
+        <section id="tab-progress" class="tab-section">
+            <div class="progress-stats">
+                <div class="stat-card">
+                    <p style="color: #94a3b8;">Total Workouts</p>
+                    <p>0</p>
+                </div>
+                <div class="stat-card">
+                    <p style="color: #94a3b8;">Total Calories</p>
+                    <p>0</p>
+                </div>
+                <div class="stat-card">
+                    <p style="color: #94a3b8;">Weekly Goal</p>
+                    <p>5</p>
+                </div>
+                <div class="stat-card">
+                    <p style="color: #94a3b8;">This Week</p>
+                    <p>0%</p>
+                </div>
+            </div>
+
+
+            <div style="margin-bottom: 2rem;">
+                <p style="color: #cbd5e1; margin-bottom: 0.8rem; font-weight: 600;">Weekly Progress</p>
+                <div class="progress-bar-outer">
+                    <div class="progress-bar-inner"></div>
+                </div>
+            </div>
+
+
+            <div class="bottom-grid">
+                <div class="table-card">
+                    <div class="card-header">
+                        <h3>Workout History</h3>
+                        <span class="sub">Recent 10 workouts</span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Exercise</th>
+                                <th>Sets</th>
+                                <th>Reps</th>
+                                <th>Calories</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="5" class="empty-row">No workouts yet</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="chart-card">
+                    <div class="card-header">
+                        <h3>Stats</h3>
+                        <span class="sub">This week</span>
+                    </div>
+                    <canvas id="progressChart" style="margin-top: auto;"></canvas>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+<!-- SESSION SUMMARY MODAL -->
+<div id="sessionSummary" class="session-summary hidden">
+    <div class="session-card">
+        <h3> Session Complete!</h3>
+        <p><strong id="summaryExercise">Exercise:</strong></p>
+        <p><strong id="summaryReps">Reps:</strong></p>
+        <p><strong id="summaryCalories">Calories:</strong></p>
+        <button id="closeSummaryBtn" class="btn-primary" style="margin-top: 1rem; width: 100%;">
+            Close
+        </button>
+    </div>
+</div>
+<!-- TensorFlow Core -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0/dist/tf.min.js"></script>
+
+<script>
+  // FORCE backend BEFORE loading pose model
+  tf.setBackend('webgl');
+  tf.ready().then(() => {
+    console.log("✅ TensorFlow WebGL backend ready");
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.0"></script>
+
+
+<!-- Your Dashboard JS -->
+<script src="/js/dashboard.js"></script>
+
+<!-- EXERCISE DEMO MODAL -->
+<div id="exerciseDemoModal" class="demo-modal hidden">
+  <div class="demo-card">
+    <h3 id="demoTitle">Exercise Demo</h3>
+
+    <video
+      id="demoVideo"
+      controls
+      autoplay
+      muted
+      loop
+      playsinline
+    ></video>
+
+    <button id="closeDemoBtn" class="btn-primary" style="margin-top: 1rem;">
+      Close
+    </button>
+  </div>
+</div>
+</body>
+</html>

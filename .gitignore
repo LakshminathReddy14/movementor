@@ -1,0 +1,7 @@
+node_modules/
+.env
+.env.*
+!.env.example
+
+public/videos/*
+!public/videos/*.mp4

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoveMentor - Your AI Fitness Trainer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <!-- Header -->
+  <header class="navbar">
+    <div class="logo">MoveMentor</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="btn-primary" id="startBtn">Get Started</button>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Train Smarter with <span>AI</span></h1>
+      <p>
+        Your personal AI fitness trainer that adapts to your goals, monitors
+        your progress, and motivates you daily.
+      </p>
+      <div class="cta-buttons">
+        <button class="btn-primary" id="trialBtn">Start Free Trial</button>
+        <button class="btn-secondary" id="demoBtn">Watch Demo</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img
+        src="https://images.unsplash.com/photo-1599058917212-d750089bc07b?auto=format&fit=crop&w=1000&q=80"
+        alt="AI fitness trainer"
+      />
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <h2>Why Choose MoveMentor?</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1974/1974317.png"
+          alt=""
+        />
+        <h3>Smart Workout Plans</h3>
+        <p>AI-generated plans customized to your body type and goals.</p>
+      </div>
+      <div class="feature-card">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/4150/4150897.png"
+          alt=""
+        />
+        <h3>Real-time Tracking</h3>
+        <p>Track calories, workouts, and performance with advanced analytics.</p>
+      </div>
+      <div class="feature-card">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/2948/2948035.png"
+          alt=""
+        />
+        <h3>24/7 AI Coach</h3>
+        <p>Get instant feedback, motivation, and adaptive training anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="about-content">
+      <h2>About MoveMentor</h2>
+      <p>
+        MoveMentor combines artificial intelligence and fitness science to
+        deliver truly personalized coaching experiences. Whether you're a
+        beginner or a pro athlete, MoveMentor evolves with you — analyzing your
+        progress, suggesting new workouts, and keeping you accountable.
+      </p>
+      <button class="btn-primary" id="learnMoreBtn">Learn More</button>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2>Stay Connected</h2>
+    <p>
+      Join our community and get exclusive fitness insights, AI updates, and
+      more.
+    </p>
+    <form id="subscribeForm">
+      <input type="email" id="email" placeholder="Enter your email" required />
+      <button type="submit" class="btn-primary">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 MoveMentor. All rights reserved.</p>
+  </footer>
+
+  <!-- Auth Modal -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="auth-container">
+        <ul class="auth-tabs">
+          <li>
+            <button class="auth-tab-btn active" data-tab="login">Login</button>
+          </li>
+          <li>
+            <button class="auth-tab-btn" data-tab="register">
+              Register
+            </button>
+          </li>
+        </ul>
+
+        <!-- Login Form -->
+        <div id="login" class="auth-tab-content active">
+          <h2>Login to MoveMentor</h2>
+          <form id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Email" required />
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Password"
+              required
+            />
+            <button type="submit" class="btn-primary">Login</button>
+            <p id="loginError" class="error-msg"></p>
+          </form>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register" class="auth-tab-content">
+          <h2>Create Your Account</h2>
+          <form id="registerForm">
+            <input
+              type="text"
+              id="registerName"
+              placeholder="Full Name"
+              required
+            />
+            <input
+              type="email"
+              id="registerEmail"
+              placeholder="Email"
+              required
+            />
+            <input
+              type="password"
+              id="registerPassword"
+              placeholder="Password"
+              required
+            />
+            <select id="fitnessGoal" required>
+              <option value="">Select Fitness Goal</option>
+              <option value="weight_loss">Weight Loss</option>
+              <option value="muscle_gain">Muscle Gain</option>
+              <option value="endurance">Endurance</option>
+              <option value="flexibility">Flexibility</option>
+            </select>
+            <select id="bodyType" required>
+              <option value="">Select Body Type</option>
+              <option value="ectomorph">Ectomorph (Lean)</option>
+              <option value="mesomorph">Mesomorph (Athletic)</option>
+              <option value="endomorph">Endomorph (Curvy)</option>
+            </select>
+            <button type="submit" class="btn-primary">Register</button>
+            <p id="registerError" class="error-msg"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scriptt.js"></script>
+</body>
+</html>
