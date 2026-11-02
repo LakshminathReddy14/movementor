@@ -1,6 +1,6 @@
 # 🏋️ MoveMentor — AI Fitness Trainer
 
-MoveMentor is an AI-powered fitness trainer that uses real-time pose detection to monitor workouts, count repetitions, and estimate calories burned.
+MoveMentor is an AI-powered fitness trainer that uses real-time pose detection to monitor workouts, count reps, and estimate calories burned.
 
 It uses **TensorFlow.js MoveNet** to analyze body movements through the user's camera and provide real-time workout feedback.
 
@@ -8,7 +8,7 @@ It uses **TensorFlow.js MoveNet** to analyze body movements through the user's c
 
 - 🎥 Real-time camera-based exercise detection
 - 🦴 AI pose detection using TensorFlow.js MoveNet
-- 🔢 Automatic repetition counting
+- 🔢 Automatic rep counting
 - 🔥 Calorie estimation
 - 🏋️ Exercise tracking for workouts such as squats and push-ups
 - 📊 Workout progress and statistics
